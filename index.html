@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075c4d">
+<link rel="manifest" href="manifest.json">
+<title>🇺🇿 Uzbekistan Pocket Guide</title>
+<style>
+:root{--bg:#f4f7f5;--card:#fff;--ink:#17221e;--muted:#69756f;--a:#08745d;--a2:#dff1eb;--line:#e1e8e4;--gold:#c28a2e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.48 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:linear-gradient(140deg,#064e43,#0a8268);color:#fff;padding:27px 18px 22px;border-radius:0 0 28px 28px}
+header h1{margin:0;font-size:28px;letter-spacing:-.5px}header p{margin:4px 0 0;opacity:.84}
+main{max-width:780px;margin:auto;padding:14px 14px 92px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 5px 18px #16392e0b;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.tile{min-height:108px;text-align:left;border:0;cursor:pointer}.tile .ico{font-size:25px}.tile b{display:block;margin:8px 0 2px}
+section{display:none}section.active{display:block}.muted,.small{color:var(--muted)}.small{font-size:13px}
+h2{margin:2px 0 5px;font-size:22px}h3{margin:20px 0 6px}.search,.input{width:100%;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff;font:inherit;margin:9px 0}
+button{font:inherit}.pill{border:1px solid #c9ddd6;background:var(--a2);color:#075c4d;border-radius:999px;padding:8px 11px;cursor:pointer;margin:3px}.row{display:flex;gap:5px;flex-wrap:wrap}
+.phrase{display:flex;justify-content:space-between;gap:8px;padding:13px 0;border-bottom:1px solid var(--line)}.phrase:last-child{border:0}.speak{border:0;background:#edf5f2;border-radius:10px;padding:8px 10px;cursor:pointer}
+.big{font-size:22px}.fact{border-left:4px solid var(--a);background:#f0f6f3;padding:10px 12px;border-radius:0 12px 12px 0;margin:9px 0}.gold{border-left-color:var(--gold)}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10;padding:7px 5px max(7px,env(safe-area-inset-bottom));gap:3px}.nav button{border:0;background:transparent;color:var(--muted);flex:1;max-width:145px;padding:7px 2px;border-radius:12px}.nav button.active{background:var(--a2);color:var(--a);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:8px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted)}
+.timeline{position:relative;margin-left:8px;padding-left:18px;border-left:2px solid #cddbd5}.event{margin:0 0 18px}.year{font-weight:800;color:var(--a)}
+.food{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line)}.food b{display:block}
+.rate{display:grid;grid-template-columns:1fr 1fr;gap:8px}.rate input{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit}
+.notice{background:#fff8df;border:1px solid #ead9a0;padding:11px;border-radius:13px}
+</style>
+</head>
+<body>
+<header><h1>🇺🇿 Uzbekistan Pocket Guide</h1><p>Offline • phrases • signs • food • history • money</p></header>
+<main>
+<section id="home" class="active">
+<div class="grid">
+<button class="card tile" onclick="show('phrases')"><span class="ico">💬</span><b>Speak Uzbek</b><span class="small">Phrases + pronunciation</span></button>
+<button class="card tile" onclick="show('translate')"><span class="ico">🔤</span><b>Translate</b><span class="small">Compact offline phrasebook</span></button>
+<button class="card tile" onclick="show('signs')"><span class="ico">А</span><b>Read signs</b><span class="small">Latin ↔ Cyrillic</span></button>
+<button class="card tile" onclick="show('cities')"><span class="ico">🏛️</span><b>Cities</b><span class="small">Tashkent • Samarkand • Bukhara</span></button>
+<button class="card tile" onclick="show('food')"><span class="ico">🍽️</span><b>Food decoder</b><span class="small">Know what you're ordering</span></button>
+<button class="card tile" onclick="show('history')"><span class="ico">⏳</span><b>History</b><span class="small">Silk Road → USSR → today</span></button>
+<button class="card tile" onclick="show('money')"><span class="ico">💷</span><b>Money</b><span class="small">GBP ↔ UZS manual rate</span></button>
+<button class="card tile" onclick="show('emergency')"><span class="ico">🆘</span><b>Emergency</b><span class="small">Essential phrases & numbers</span></button>
+</div>
+<div class="card"><h2>Three things to remember</h2>
+<div class="fact"><b>Samarkand is ancient.</b><br>Official tourism material puts its history at more than 2,750 years.</div>
+<div class="fact"><b>Bukhara is an oasis city.</b><br>Its history exceeds 2,500 years and it became a major Islamic and intellectual centre.</div>
+<div class="fact"><b>Tashkent is a Silk Road city and a Soviet city.</b><br>It combines an ancient core with a huge modern metropolis and a distinctive Soviet-era urban legacy.</div>
+</div>
+<div class="notice">📴 Tip: open every section once before flying. The app itself contains no external images, libraries or live APIs.</div>
+</section>
+
+<section id="phrases"><div class="card"><h2>Useful Uzbek</h2><p class="muted">Tap 🔊 where available.</p><input class="search" id="ps" placeholder="Search…" oninput="renderPhrases()"><div id="plist"></div></div></section>
+
+<section id="translate"><div class="card"><h2>Offline translator</h2><p class="muted">A deliberate phrasebook: fast and reliable offline, rather than pretending to be a full AI translator.</p><textarea id="tin" class="input" style="min-height:110px" placeholder="Type a phrase…"></textarea><button class="pill" onclick="translateIt()">Translate</button><div id="tout" class="fact" style="margin-top:12px">Your result will appear here.</div><h3>Quick tap</h3><div id="quick"></div></div></section>
+
+<section id="signs"><div class="card"><h2>Uzbek alphabet & signs</h2><p class="muted">Modern Uzbek is officially Latin-based, but Cyrillic is still commonly encountered.</p>
+<table><tr><th>Latin</th><th>Sound / clue</th><th>Cyrillic</th></tr>
+<tr><td>Oʻ oʻ</td><td>special Uzbek o</td><td>Ў ў</td></tr><tr><td>Gʻ gʻ</td><td>deep/raspy g</td><td>Ғ ғ</td></tr><tr><td>Q q</td><td>deep k/q</td><td>Қ қ</td></tr><tr><td>X x</td><td>kh</td><td>Х х</td></tr><tr><td>H h</td><td>h</td><td>Ҳ ҳ</td></tr><tr><td>Sh sh</td><td>sh</td><td>Ш ш</td></tr><tr><td>Ch ch</td><td>ch</td><td>Ч ч</td></tr><tr><td>Yo yo</td><td>yo</td><td>Ё ё</td></tr><tr><td>Yu yu</td><td>yu</td><td>Ю ю</td></tr><tr><td>Ya ya</td><td>ya</td><td>Я я</td></tr></table>
+<h3>Cyrillic → Latin</h3><input class="search" id="cy" placeholder="e.g. Тошкент" oninput="cyConvert()"><div id="cyo" class="fact"></div>
+<h3>Latin → Cyrillic</h3><input class="search" id="la" placeholder="e.g. Toshkent" oninput="laConvert()"><div id="lao" class="fact"></div>
+</div></section>
+
+<section id="cities"><div class="card"><h2>City pocket guides</h2><div class="row"><button class="pill" onclick="city('tashkent')">Tashkent</button><button class="pill" onclick="city('samarkand')">Samarkand</button><button class="pill" onclick="city('bukhara')">Bukhara</button></div><div id="city"></div></div></section>
+
+<section id="food"><div class="card"><h2>Food decoder</h2><p class="muted">The dishes you're most likely to encounter.</p><div id="foods"></div></div></section>
+
+<section id="history"><div class="card"><h2>Uzbekistan in 90 seconds</h2><div class="timeline">
+<div class="event"><span class="year">Antiquity</span><br>Sogdian cities such as ancient Samarkand (Afrasiab) flourished in the region.</div>
+<div class="event"><span class="year">Silk Road</span><br>Trade routes connected Central Asia with China, Iran, India and the Mediterranean. Samarkand, Bukhara and Tashkent became important urban centres.</div>
+<div class="event"><span class="year">8th–10th centuries</span><br>Islam spread through the region; Bukhara and other cities became centres of scholarship and culture.</div>
+<div class="event"><span class="year">13th century</span><br>Mongol conquest under Genghis Khan transformed the political landscape.</div>
+<div class="event"><span class="year">14th–15th centuries</span><br>Amir Timur made Samarkand his capital. His grandson Ulugh Beg became famous for astronomy and scholarship.</div>
+<div class="event"><span class="year">16th–19th centuries</span><br>The khanates and emirate of Central Asia included the Bukhara, Khiva and Kokand states.</div>
+<div class="event"><span class="year">1860s onward</span><br>Russian imperial expansion brought Tashkent and then Samarkand into Russian rule.</div>
+<div class="event"><span class="year">1924–1991</span><br>Uzbekistan existed as a Soviet republic. Soviet planning dramatically reshaped Tashkent and other cities.</div>
+<div class="event"><span class="year">1991 →</span><br>Uzbekistan became independent on 1 September 1991.</div>
+</div>
+<h3>Easy conversation starters</h3>
+<div class="fact gold"><b>Ulugh Beg</b><br>Ask someone about Ulugh Beg's observatory or astronomical tables — he's one of the great intellectual figures associated with Samarkand.</div>
+<div class="fact gold"><b>Silk Road</b><br>Don't think of it as one road. It was a network of routes linking many cities, peoples and commodities across Eurasia.</div>
+</div></section>
+
+<section id="money"><div class="card"><h2>💷 Money converter</h2><p class="muted">Fully offline. Set the rate yourself because live rates cannot work without internet.</p>
+<label>1 GBP = <input id="rate" class="input" type="number" inputmode="decimal" value="16500" style="margin:6px 0 12px"> UZS</label>
+<div class="rate"><input id="gbp" type="number" placeholder="GBP" oninput="money('gbp')"><input id="uzs" type="number" placeholder="UZS" oninput="money('uzs')"></div>
+<p class="small">Example rate is only a placeholder. Change it before your trip.</p></div></section>
+
+<section id="emergency"><div class="card"><h2>🆘 Emergency & help</h2>
+<div class="notice"><b>Important:</b> emergency numbers and local procedures can change. Verify current numbers before travelling and keep your travel insurance details accessible.</div>
+<div class="phrase"><span><b>I need help.</b><br>Yordam kerak.</span><button class="speak" onclick="speak('Yordam kerak')">🔊</button></div>
+<div class="phrase"><span><b>Call a doctor.</b><br>Shifokorni chaqiring.</span><button class="speak" onclick="speak('Shifokorni chaqiring')">🔊</button></div>
+<div class="phrase"><span><b>I am lost.</b><br>Men adashib qoldim.</span><button class="speak" onclick="speak('Men adashib qoldim')">🔊</button></div>
+<div class="phrase"><span><b>Where is the police?</b><br>Politsiya qayerda?</span><button class="speak" onclick="speak('Politsiya qayerda')">🔊</button></div>
+<h3>Useful numbers</h3><table><tr><td>Police</td><td><b>102</b></td></tr><tr><td>Ambulance</td><td><b>103</b></td></tr><tr><td>Fire</td><td><b>101</b></td></tr></table>
+<p class="small">Numbers are provided as a travel reference; confirm locally if you have a serious emergency.</p>
+</div></section>
+</main>
+<nav class="nav"><button class="active" id="n-home" onclick="show('home')">⌂<br>Home</button><button id="n-phrases" onclick="show('phrases')">💬<br>Phrases</button><button id="n-signs" onclick="show('signs')">А<br>Signs</button><button id="n-cities" onclick="show('cities')">🏛️<br>Cities</button><button id="n-history" onclick="show('history')">⏳<br>History</button></nav>
+<script>
+const P=[
+["Hello","Salom"],["Good morning","Xayrli tong"],["Good evening","Xayrli kech"],["Goodbye","Xayr"],["Thank you","Rahmat"],["Please","Iltimos"],["Excuse me","Kechirasiz"],["Yes","Ha"],["No","Yoʻq"],["How are you?","Qalaysiz?"],["Good","Yaxshi"],["How much?","Qancha?"],["Too expensive","Juda qimmat"],["Can you make it cheaper?","Arzonroq qilasizmi?"],["Where is…?","… qayerda?"],["Where is the toilet?","Hojatxona qayerda?"],["I don't understand","Tushunmadim"],["Do you speak English?","Inglizcha gapirasizmi?"],["I speak a little Uzbek","Men ozgina oʻzbekcha gapiraman"],["Water","Suv"],["Tea","Choy"],["Coffee","Qahva"],["Bread","Non"],["Delicious","Mazali"],["No meat","Goʻshtsiz"],["One","Bir"],["Two","Ikki"],["Three","Uch"],["Four","Toʻrt"],["Five","Besh"],["Train station","Vokzal"],["Hotel","Mehmonxona"],["Ticket","Chipta"],["Today","Bugun"],["Tomorrow","Ertaga"]
+];
+const MAP={};P.forEach(x=>MAP[x[0].toLowerCase()]=x[1]);P.forEach(x=>MAP[x[1].toLowerCase()]=x[0]);
+const C={
+tashkent:["Tashkent","Uzbekistan's capital and largest city. Official tourism information describes it as more than 2,000 years old. Its ancient quarters sit alongside a modern metropolis shaped strongly by the Soviet period.","Chorsu Bazaar • Hazrati Imam • Tashkent Metro • Museum of Temurids • Amir Timur Square"],
+samarkand:["Samarkand","A great Silk Road city and former Sogdian centre. Official tourism material gives its history as more than 2,750 years. Under Amir Timur it became an imperial capital; under Ulugh Beg it was also a major centre of astronomy and scholarship.","Registan • Shah-i-Zinda • Gur-e-Amir • Bibi-Khanym • Afrasiab Museum"],
+bukhara:["Bukhara","An oasis city with more than 2,500 years of history. It became one of Central Asia's major Islamic, scholarly and trading centres, and retains a remarkable historic urban core.","Poi-Kalyan • Ark • Lyabi-Hauz • Trading domes • Samanid Mausoleum"]
+};
+const FOOD=[
+["🍚","Plov / Osh","Rice cooked with meat, carrots, onions and oil; the iconic Uzbek dish."],
+["🥟","Manti","Large steamed dumplings, usually filled with meat and onion."],
+["🥙","Samsa","Baked pastry parcels, often filled with lamb/beef, onion or pumpkin."],
+["🍢","Shashlik","Skewered grilled meat; commonly served with sliced onion."],
+["🍜","Lagman","Hand-pulled noodles with meat and vegetables, served as soup or a thicker dish."],
+["🥖","Non","Round Uzbek bread. It is culturally important and commonly shared at meals."],
+["🥛","Qatiq","A yoghurt-like fermented dairy product."],
+["🍵","Choy","Tea; green tea is particularly common."],
+["🍉","Meva","Fruit. Uzbekistan is famous for its melons, grapes and other produce."]
+];
+function show(id){document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));let n=document.getElementById("n-"+id);if(n)n.classList.add("active");window.scrollTo(0,0)}
+function renderPhrases(){let q=(document.getElementById("ps").value||"").toLowerCase();document.getElementById("plist").innerHTML=P.filter(x=>x.join(" ").toLowerCase().includes(q)).map(x=>`<div class="phrase"><span><b>${x[0]}</b><br><span class="muted">${x[1]}</span></span><button class="speak" onclick="speak('${x[1].replaceAll("'","&#39;")}')">🔊</button></div>`).join("")}
+function speak(t){if("speechSynthesis"in window){let u=new SpeechSynthesisUtterance(t);u.lang="uz-UZ";speechSynthesis.cancel();speechSynthesis.speak(u)}}
+function translateIt(){let t=document.getElementById("tin").value.trim().toLowerCase();let r=MAP[t];if(!r){let k=Object.keys(MAP).find(k=>k.includes(t)||t.includes(k));r=k?MAP[k]:"Not in this compact offline phrasebook yet."}document.getElementById("tout").innerHTML="<b>Result</b><br><span class='big'>"+r+"</span>"}
+function quick(){document.getElementById("quick").innerHTML=P.slice(0,12).map(x=>`<button class="pill" onclick="document.getElementById('tin').value='${x[0].replaceAll("'","")}';translateIt()">${x[0]}</button>`).join("")}
+const cy=[["ў","oʻ"],["Ў","Oʻ"],["ғ","gʻ"],["Ғ","Gʻ"],["қ","q"],["Қ","Q"],["ҳ","h"],["Ҳ","H"],["ш","sh"],["Ш","Sh"],["ч","ch"],["Ч","Ch"],["ж","j"],["Ж","J"],["ё","yo"],["Ё","Yo"],["ю","yu"],["Ю","Yu"],["я","ya"],["Я","Ya"],["й","y"],["Й","Y"],["ц","ts"],["Ц","Ts"],["ъ",""],["ь",""],["э","e"],["Э","E"]];
+function cyConvert(){let s=document.getElementById("cy").value;cy.forEach(x=>s=s.split(x[0]).join(x[1]));document.getElementById("cyo").textContent=s}
+function laConvert(){let s=document.getElementById("la").value;[["Oʻ","Ў"],["oʻ","ў"],["Gʻ","Ғ"],["gʻ","ғ"],["Sh","Ш"],["sh","ш"],["Ch","Ч"],["ch","ч"],["Q","Қ"],["q","қ"],["X","Х"],["x","х"],["H","Ҳ"],["h","ҳ"],["Yo","Ё"],["yo","ё"],["Yu","Ю"],["yu","ю"],["Ya","Я"],["ya","я"]].forEach(x=>s=s.split(x[0]).join(x[1]));document.getElementById("lao").textContent=s}
+function city(k){let x=C[k];document.getElementById("city").innerHTML=`<h3>${x[0]}</h3><p>${x[1]}</p><div class="fact"><b>Don't miss</b><br>${x[2]}</div>`}
+function money(which){let rate=Number(document.getElementById("rate").value)||0;if(which==="gbp"){let v=Number(document.getElementById("gbp").value)||0;document.getElementById("uzs").value=Math.round(v*rate)}else{let v=Number(document.getElementById("uzs").value)||0;document.getElementById("gbp").value=(v/rate).toFixed(2)}}
+document.getElementById("foods").innerHTML=FOOD.map(x=>`<div class="food"><span style="font-size:25px">${x[0]}</span><span><b>${x[1]}</b>${x[2]}</span></div>`).join("");
+renderPhrases();quick();city("tashkent");
+if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js");
+</script>
+</body></html>
